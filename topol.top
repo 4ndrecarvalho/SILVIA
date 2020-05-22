@@ -1,0 +1,18 @@
+#include "gene.itp"
+#include "/home/acarvalho/Desktop/silvia/simplex/martini_v2.2_Main_silicates_mod.itp"
+#include "/home/acarvalho/Desktop/silvia/simplex/stella8VS.itp"
+#ifdef POSRES
+#include "posre.itp"
+#endif
+
+#include "/home/acarvalho/Desktop/silvia/ff/w_cg.itp"
+#include "/home/acarvalho/Desktop/silvia/ff/wf_cg.itp"
+
+
+[ system ] 
+Test in water
+
+[ molecules ]
+SIV        1000
+WT 	       6500
+WD	       1200
