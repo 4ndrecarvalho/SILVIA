@@ -1,0 +1,75 @@
+#! /bin/bash
+
+if [ $# -ne 4 ]
+then
+echo "xxxxxxxxxxxxxx  INPUT ERROR  xxxxxxxxxxxxxxxxx"
+echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+echo "                                              "
+echo " Usage : run <sigma> <epsilon> <repulsion> <dVS>"
+echo " This creates a directory with name:"
+echo ' dVS_$dVS    and    $SIGMA_$EPSILON      '                   
+echo ".............................................."
+exit
+fi
+
+RMIN_QSI=$(awk "BEGIN {print 0.47*2^(1/6)}") # define: Q=0.47 SQ=0.43 XQ=0.26727
+SIGMA=$1 
+EPSILON=$2
+REP=$3
+D_VS=$4
+DIR=$(pwd)
+RMIN=$(awk "BEGIN {print $SIGMA*2^(1/6)}")
+D_Q_LENGTH=$(awk "BEGIN {print ($RMIN_QSI-$RMIN)/2 }")
+FF_DIR="/home/acarvalho/Desktop/silvia/ff/"
+MIN=$FF_DIR"min_cg.mdp"
+MIN2=$FF_DIR"min2_cg.mdp"
+NVT=$FF_DIR"nvt_cg.mdp"
+NPT=$FF_DIR"npt_cg.mdp"
+NPT_PARR=$FF_DIR"npt_parr_cg.mdp"
+MD=$FF_DIR"md_cg.mdp"
+C12=$(awk "BEGIN {print 4*$EPSILON*($SIGMA^12)}")
+C6=$(awk "BEGIN {print 4*$EPSILON*($SIGMA^6)}")
+D_D=$(awk -v OFMT='%.3f' "BEGIN {
+    d1 = $D_Q_LENGTH / cos(35.25 * 3.14159 / 180)
+    d2 = $D_Q_LENGTH * cos(70.5 * 3.14159 / 180)
+    d3 = d2 / cos(35.25 * 3.14159 / 180)
+    d_d_length = d1 + d3; print d_d_length}" | cut -c -5)
+
+mkdir "dVS_"$D_VS
+cd "dVS_"$D_VS
+mkdir $SIGMA"_"$EPSILON
+cd $SIGMA"_"$EPSILON
+sed -i "28s/.*/#define C12_D_D     $C12 /" $DIR/gene.itp
+sed -i "29s/.*/#define C6_D_D      $C6 /"  $DIR/gene.itp
+sed -i "21s/.*/#define D_D_LENGTH  $D_D /" $DIR/gene.itp
+sed -i "20s/.*/#define D_Q_LENGTH  $D_Q_LENGTH/" $DIR/gene.itp
+sed -i "39s/.*/#define VW_LENGTH   $D_VS/" $DIR/gene.itp
+sed -i "40s/.*/#define VX_LENGTH   $D_VS/" $DIR/gene.itp
+sed -i "41s/.*/#define VY_LENGTH   $D_VS/" $DIR/gene.itp
+sed -i "42s/.*/#define VZ_LENGTH   $D_VS/" $DIR/gene.itp
+sed -i "49s/.*/#define VS_D_REP    $REP/" $DIR/gene.itp
+
+cp $DIR/gene.itp "gene_dVS_"$D_VS"_"$SIGMA"_"$EPSILON"_"$REP.log
+# cp $NVT .
+# cp $NPT .
+# cp $NPT_PARR .
+# cp $MD .
+
+gmx -nobackup -nocopyright grompp -f $MIN -c $DIR/npt_parr.gro -p $DIR/topol.top -o min.tpr  -maxwarn 1 || exit 1
+gmx -nobackup -nocopyright mdrun -deffnm min || exit 1
+
+gmx -nobackup -nocopyright grompp -f $MIN2 -c min.gro -p $DIR/topol.top -o min.tpr  -maxwarn 1 || exit 1
+gmx -nobackup -nocopyright mdrun -deffnm min || exit 1
+
+#gmx -nobackup -nocopyright grompp -f $NVT -c min.gro -p ../topol.top -o nvt.tpr -maxwarn 2 || exit 1
+#gmx -nobackup -nocopyright mdrun -v -deffnm nvt || exit 1
+
+#gmx -nobackup -nocopyright grompp -f $NPT -c nvt.gro -p ../topol.top -o npt.tpr -maxwarn 2 || exit 1
+#gmx -nobackup -nocopyright mdrun -v -deffnm npt || exit 1
+
+#gmx -nobackup -nocopyright grompp -f $NPT_PARR -c npt.gro -p ../topol.top -o npt_parr.tpr -maxwarn 2 || exit 1
+#gmx -nobackup -nocopyright mdrun -v -deffnm npt_parr || exit 1
+
+gmx -nobackup -nocopyright grompp -f $DIR/md_cg.mdp -c min.gro -p $DIR/topol.top -o $REP.tpr -maxwarn 3 || exit 1
+gmx -nobackup -nocopyright mdrun -v -deffnm $REP || exit 1
+
