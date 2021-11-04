@@ -1,5 +1,15 @@
 #! /bin/bash
 
+# READ ME
+# e.g. how it was made for this article: "./run 0.143333 50 0.24E-5 0.321772"
+# change $FF_DIR to the directory where your mdp files are.
+# check for the files in $DIR
+# since the initial.gro is a pre-equilibrated run with no
+# atraction but with repulsion of VS, we can run only a 
+# short minimization followed by the production run.
+# In some cases the system may find a singularity and 
+# explode. Continue by restarting from last checkpoint.
+
 if [ $# -ne 4 ]
 then
 echo "xxxxxxxxxxxxxx  INPUT ERROR  xxxxxxxxxxxxxxxxx"
@@ -12,7 +22,7 @@ echo ".............................................."
 exit
 fi
 
-RMIN_QSI=$(awk "BEGIN {print 0.47*2^(1/6)}") # define: Q=0.47 SQ=0.43 XQ=0.26727
+RMIN_QSI=$(awk "BEGIN {print 0.43*2^(1/6)}") # define: Qsi=0.47 SQsi=0.43 Keep in mind that other values need to be changed in topol files
 SIGMA=$1 
 EPSILON=$2
 REP=$3
@@ -20,7 +30,7 @@ D_VS=$4
 DIR=$(pwd)
 RMIN=$(awk "BEGIN {print $SIGMA*2^(1/6)}")
 D_Q_LENGTH=$(awk "BEGIN {print ($RMIN_QSI-$RMIN)/2 }")
-FF_DIR="/home/acarvalho/Desktop/silvia/ff/"
+FF_DIR="/home/acarvalho/silvia/ff/"
 MIN=$FF_DIR"min_cg.mdp"
 MIN2=$FF_DIR"min2_cg.mdp"
 NVT=$FF_DIR"nvt_cg.mdp"
@@ -55,21 +65,21 @@ cp $DIR/gene.itp "gene_dVS_"$D_VS"_"$SIGMA"_"$EPSILON"_"$REP.log
 # cp $NPT_PARR .
 # cp $MD .
 
-gmx -nobackup -nocopyright grompp -f $MIN -c $DIR/npt_parr.gro -p $DIR/topol.top -o min.tpr  -maxwarn 1 || exit 1
-gmx -nobackup -nocopyright mdrun -deffnm min || exit 1
 
-gmx -nobackup -nocopyright grompp -f $MIN2 -c min.gro -p $DIR/topol.top -o min.tpr  -maxwarn 1 || exit 1
-gmx -nobackup -nocopyright mdrun -deffnm min || exit 1
+gmx -nobackup -nocopyright grompp -f $MIN -c $DIR/initial.gro -p $DIR/topol.top -o min.tpr -maxwarn 1 || exit 1 
+gmx -nobackup -nocopyright mdrun -deffnm min  || exit 1
 
-#gmx -nobackup -nocopyright grompp -f $NVT -c min.gro -p ../topol.top -o nvt.tpr -maxwarn 2 || exit 1
+#gmx -nobackup -nocopyright grompp -f $MIN2 -c min.gro -p $DIR/topol.top -o min.tpr  -maxwarn 1 || exit 1
+#gmx -nobackup -nocopyright mdrun -deffnm min || exit 1
+
+#gmx -nobackup -nocopyright grompp -f $NVT -c min.gro -p $DIR/topol.top -o nvt.tpr -maxwarn 2 || exit 1
 #gmx -nobackup -nocopyright mdrun -v -deffnm nvt || exit 1
 
-#gmx -nobackup -nocopyright grompp -f $NPT -c nvt.gro -p ../topol.top -o npt.tpr -maxwarn 2 || exit 1
+#gmx -nobackup -nocopyright grompp -f $NPT -c nvt.gro -p $DIR/topol.top -o npt.tpr -maxwarn 2 || exit 1
 #gmx -nobackup -nocopyright mdrun -v -deffnm npt || exit 1
 
-#gmx -nobackup -nocopyright grompp -f $NPT_PARR -c npt.gro -p ../topol.top -o npt_parr.tpr -maxwarn 2 || exit 1
+#gmx -nobackup -nocopyright grompp -f $NPT_PARR -c npt.gro -p $DIR/topol.top -o npt_parr.tpr -maxwarn 2 || exit 1
 #gmx -nobackup -nocopyright mdrun -v -deffnm npt_parr || exit 1
 
 gmx -nobackup -nocopyright grompp -f $DIR/md_cg.mdp -c min.gro -p $DIR/topol.top -o $REP.tpr -maxwarn 3 || exit 1
 gmx -nobackup -nocopyright mdrun -v -deffnm $REP || exit 1
-
