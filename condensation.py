@@ -1,4 +1,14 @@
 #! /usr/bin/env python3
+#_________________________________________________________________________________
+# andre.dc@ua.pt
+# MolModel@CICECO Universidade Aveiro
+#
+# This script calculate the mol fraction of silica species in the simulation, and generate the graphs for the (mole fraction / time) and (mole fraction / degree of condensation)
+#
+# USAGE: REP=<insert_Erep> && gmx trjconv -nobackup -s $REP.tpr -f $REP.xtc -o d.xtc -n ../index.ndx  && python3 ../condensation_legacy.py d.xtc <insert_distance> no $REP
+#
+# <insert_Erep> is the value for VS repulsion energy, the index.ndx contains only Si atoms and <insert_distance> is the radial distance to count a bond.
+#__________________________________________________________________________________
 
 import numpy as np
 import matplotlib.pyplot as plt
