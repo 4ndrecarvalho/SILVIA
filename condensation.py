@@ -7,7 +7,7 @@
 #
 # USAGE: REP=<insert_Erep> && gmx trjconv -nobackup -s $REP.tpr -f $REP.xtc -o d.xtc -n ../index.ndx  && python3 ../condensation_legacy.py d.xtc <insert_distance> no $REP
 #
-# <insert_Erep> is the value for VS repulsion energy, the index.ndx contains only Si atoms and <insert_distance> is the radial distance to count a bond.
+# <insert_Erep> is the value for VS repulsion energy, the index.ndx contains only Si atoms and <insert_distance> is the radial distance to count a bond, 5.2  for SQSi, 5.8 for QSi.
 #__________________________________________________________________________________
 
 import numpy as np
