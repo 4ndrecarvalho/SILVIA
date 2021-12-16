@@ -3,6 +3,8 @@
 # andre.dc@ua.pt
 # MolModel@CICECO Universidade Aveiro
 #
+# DISCLAIMER: This code was written in 2018 when I started to learn programming (self taught). This code is badly strutured and was not optimized nor updated.
+#
 # This script calculate the mol fraction of silica species in the simulation, and generate the graphs for the (mole fraction / time) and (mole fraction / degree of condensation)
 #
 # USAGE: REP=<insert_Erep> && gmx trjconv -nobackup -s $REP.tpr -f $REP.xtc -o d.xtc -n ../index.ndx  && python3 ../condensation_legacy.py d.xtc <insert_distance> no $REP
