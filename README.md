@@ -8,14 +8,6 @@ https://drive.google.com/file/d/1T85VL0xQN7KZ0D8jxwkJWf8lAdNWDjd-/view?usp=shari
 
 ![Image of RSi](https://lh4.googleusercontent.com/H4cwNgtLouJMLTL3pf9gbUnOkOEbTYogVvDlNna7NLNJrFDNgWFmcrl5TTY9yl7UzhTujVcWuF6YeFlMOouSwSiUX8VM6NtlesSOeXI44HEQS_GfbjGPHQt1s-A5Bgi7lDYTzyCC)
 
-![Image of ENQF21](https://drive.google.com/uc?export=view&id=1PUp9EQEsL0HEHHXFrScnyJlQdio3jnx9)
-
-https://drive.google.com/uc?export=view&id=1PUp9EQEsL0HEHHXFrScnyJlQdio3jnx9
-
-
-https://drive.google.com/uc?export=view&id=1aLPeQASgzSJtNs9f0Q2Bp7S65RxCkAHr
-
-Molecular dynamics of an aqueous solution of silica (silica condensation).
 
 
 The forcefield is hidden, becaus a scientific paper is yet to be published.
