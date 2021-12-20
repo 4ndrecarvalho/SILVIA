@@ -18,15 +18,6 @@ https://drive.google.com/uc?export=view&id=1aLPeQASgzSJtNs9f0Q2Bp7S65RxCkAHr
 Molecular dynamics of an aqueous solution of silica (silica condensation).
 
 
-https://drive.google.com/uc?export=view&id=1DM5H8HeRBwdosoSqQhJWL8vfn6tw5yIi
-
-Molecular dynamics of a silica + CTA+ (cetrilammonium) surfactant in water, with the formation of a MCM41 like mesophase.
-
-
-https://drive.google.com/uc?export=view&id=1IMysLJ286d_ToRn_yZBKDOB5bsmxh4kw
-
-Details of the final form of the mesophase, with the bigger silica chains highlighted in pink.
-
 The forcefield is hidden, becaus a scientific paper is yet to be published.
 
 
