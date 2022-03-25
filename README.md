@@ -10,4 +10,20 @@ https://drive.google.com/file/d/1T85VL0xQN7KZ0D8jxwkJWf8lAdNWDjd-/view?usp=shari
 ![Image of RSi](https://lh4.googleusercontent.com/H4cwNgtLouJMLTL3pf9gbUnOkOEbTYogVvDlNna7NLNJrFDNgWFmcrl5TTY9yl7UzhTujVcWuF6YeFlMOouSwSiUX8VM6NtlesSOeXI44HEQS_GfbjGPHQt1s-A5Bgi7lDYTzyCC)
 
 
-The forcefield is hidden, because a scientific paper is yet to be published.
+![Image of ENQF21](https://drive.google.com/uc?export=view&id=1PUp9EQEsL0HEHHXFrScnyJlQdio3jnx9)
+
+https://drive.google.com/uc?export=view&id=1PUp9EQEsL0HEHHXFrScnyJlQdio3jnx9
+
+
+https://drive.google.com/uc?export=view&id=1aLPeQASgzSJtNs9f0Q2Bp7S65RxCkAHr
+
+Molecular dynamics of an aqueous solution of silica (silica condensation).
+
+https://drive.google.com/uc?export=view&id=1DM5H8HeRBwdosoSqQhJWL8vfn6tw5yIi
+
+Molecular dynamics of a silica + CTA+ (cetrilammonium) surfactant in water, with the formation of a MCM41 like mesophase.
+
+
+https://drive.google.com/uc?export=view&id=1IMysLJ286d_ToRn_yZBKDOB5bsmxh4kw
+
+Details of the final form of the mesophase, with the bigger silica chains highlighted in pink.
