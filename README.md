@@ -27,3 +27,14 @@ Molecular dynamics of a silica + CTA+ (cetrilammonium) surfactant in water, with
 https://drive.google.com/uc?export=view&id=1IMysLJ286d_ToRn_yZBKDOB5bsmxh4kw
 
 Details of the final form of the mesophase, with the bigger silica chains highlighted in pink.
+
+
+
+
+CENTRO-01-0145-FEDER-31002 e (PTDC/QUI-QFI/31002/2017).
+This work was developed within the scope of project SILVIA, refs. CENTRO-01-0145-FEDER-31002 and PTDC/QUI-QFI/31002/2017 financed by the Portuguese Fundação para a Ciência e a Tecnologia (FCT/MCTES) and co-financed by the European Regional Development Fund (FEDER) under the PT2020 Partnership Agreement.
+![image](https://user-images.githubusercontent.com/42943782/168495665-a4bc6a0b-e665-47b6-8415-154f603066ee.png)
+![image](https://user-images.githubusercontent.com/42943782/168495672-ca8b6802-035f-4ef4-b7dd-f7fbaaf526e7.png)
+
+
+
